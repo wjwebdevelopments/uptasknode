@@ -1,0 +1,13 @@
+input[type="text"] {
+    color: #55595c;
+    background-color: #f7f7f9;
+    border-color: #5a5a5a;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(26, 26, 26, 0.25);
+    border-radius: 50px;
+}
+
+button.btn-round {
+    border-radius: 50px;
+    
+}

@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Uptask | #{nombrePagina.toUpperCase()}
+
+        link(href="/css/normalize.css" rel="stylesheet")
+        link(href="/css/bootswatch-lux.css" rel="stylesheet")
+        link(rel="stylesheet", href="/css/icofont.css")
+        link(rel="stylesheet", href="/css/app.css")
+    body
+
+        .navbar.navbar-dark.bg-primary
+            .container.d-flex.justify-content-between
+                a.navbar-brand Uptask Administrador de proyectos
+                ul.navbar-nav 
+                    li.nav-item
+                        a.nav-link(href="#") Cerrar sesión 
+        
+        main.container 
+            aside.contenedor__proyectos
+                .row.mt-5 
+                    .col-4 
+                        .panel.panel--crear-proyecto 
+                            a.btn.btn-primary.btn-block.btn-lg(href="/nuevo-proyecto") 
+                                i.icofont.icofont-plus
+                                |   Nuevo Proyecto
+                        .panel.panel--lista-proyectos.mt-5
+                            h3 Proyectos
+                            .list-group
+                                a.list-group-item.list-group-item-action(href="#") Diseño de tienda virtual
+                                a.list-group-item.list-group-item-action(href="#") Diseño de nuevo blog 
+                                a.list-group-item.list-group-item-action(href="#") Diseño de logotipo
+                    .col-8
+                        block contenido
