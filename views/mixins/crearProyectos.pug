@@ -1,0 +1,14 @@
+mixin crearProyecto(proyecto = {})
+    .jumbotron
+        form(action=`/nuevo-proyecto/${ proyecto.id || '' }` method="POST")
+            .form-group 
+                label
+                    strong Nombre proyecto: 
+                input.form-control(
+                    type="text" 
+                    name="nombre"
+                    value= proyecto.nombre
+                    placeholder="Nombre del proyecto") 
+            .form-group 
+                button.btn.btn-primary.btn-round(type="submit") 
+                    |   #{ proyecto.nombre ? 'Guardar' : 'Agregar' }

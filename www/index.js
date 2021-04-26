@@ -4,6 +4,8 @@ const path = require('path');
 const errorhandler = require('errorhandler');
 const morgan = require('morgan');
 
+const helpers = require('./helpers');
+
 module.exports = (app) => {
 
     // Mode
@@ -24,6 +26,12 @@ module.exports = (app) => {
 
     // Routes.
     const routes = require('../routes');
+
+    // Pasar helpers a la aplicacion
+    app.use((req, res = express.response, next) => {
+        res.locals.vardump = helpers.vardump;
+        next();
+    });
 
     // Body parser
     app.use(express.urlencoded({extended: false}));

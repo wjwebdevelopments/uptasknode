@@ -1,7 +1,10 @@
 extends layout
 
+include mixins/crearProyectos
+
 block contenido 
     h1 #{nombrePagina}
+    //- pre= vardump(proyecto)
 
     if errores
         each error in errores
@@ -10,11 +13,4 @@ block contenido
                 a.alert-link(href="#") &nbsp;#{error.tipo.toUpperCase()} 
                 |   #{error.texto}.
 
-    .jumbotron
-        form(action="/nuevo-proyecto" method="POST")
-            .form-group 
-                label
-                    strong Nombre proyecto: 
-                input.form-control(type="text" name="nombre" placeholder="Nombre del proyecto")
-            .form-group 
-                button.btn.btn-primary.btn-round(type="submit") Agregar 
+    +crearProyecto(proyecto)
