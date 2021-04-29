@@ -1,4 +1,5 @@
 const Proyecto = require('../models/proyecto');
+const { response, request } = require('express');
 
 exports.proyectosHome = async (req, res) => {
 
@@ -106,4 +107,21 @@ exports.actualizarProyecto = async (req, res) => {
 
     }
     
+}
+
+exports.eliminarProyecto = async (req = request, res = response, next) => {
+
+    const url = req.query.url;
+
+    Proyecto.destroy({ where: { url } })
+        .then(proyecto => {
+
+            if (!proyecto) return next();
+
+            res.json({ message: 'Proyecto eliminado!' });
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        });
+
 }

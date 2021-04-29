@@ -30,15 +30,23 @@ html(lang="en")
                         .panel.panel--lista-proyectos.mt-5
                             h3 Proyectos
                             .list-group
-                                if proyectos
+                                if proyectos.length > 0
                                     each proyecto in proyectos
                                         a.list-group-item.list-group-item-action(href=`/proyectos/${proyecto.url}`)
                                             i.icofont.icofont-folder.icofont-1x  
                                             |   #{proyecto.nombre}
+                                else 
+                                    .no-proyectos.d-flex.flex-column.mt-3 
+                                        i.icofont.icofont-bullseye.icofont-2x 
+                                        p.mb-0 No hay proyectos
+                                        span Click en 
+                                            a(href="/nuevo-proyecto") nuevo proyecto  
+                                            |   para ampezar.
                     .col-8
                         block contenido
         
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")  
         script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js")
         script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
+        script(src="/dist/bundle.js")
                            

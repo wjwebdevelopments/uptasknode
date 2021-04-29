@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index",
-    "watch": "webpack --w --mode development"
+    "dev": "nodemon index",
+    "start": "concurrently \" npm run dev \" \" npm run webpack \"",
+    "webpack": "webpack"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta3",
     "express": "^4.17.1",
     "express-validator": "^6.10.0",
@@ -18,7 +20,8 @@
     "nanoid": "^3.1.22",
     "pug": "^3.0.2",
     "sequelize": "^6.6.2",
-    "slug": "^4.0.4"
+    "slug": "^4.0.4",
+    "sweetalert2": "^10.16.6"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",
@@ -29,6 +32,7 @@
     "errorhandler": "^1.5.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7",
-    "webpack": "^5.35.1"
+    "webpack": "^5.35.1",
+    "webpack-cli": "^4.6.0"
   }
 }

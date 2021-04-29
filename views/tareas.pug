@@ -5,7 +5,18 @@ block contenido
 
 
     // TODO: Formulario aqui
-
+    .jumbotron 
+        form.agregar-tarea(action=`/proyectos/${proyecto.url}` method="POST")
+            .form-group 
+                label(for="tarea")
+                    strong Agregar una nueva Tarea 
+                input.form-control(
+                    type="text" 
+                    name="tarea"
+                    placeholder="Nombre de la tarea") 
+            .form-group 
+                button.btn.btn-primary.btn-round(type="submit") 
+                    |   Crear tarea
 
 
 
@@ -16,9 +27,9 @@ block contenido
 
     //Acciones que se pueden realizar
     .btn-group(role='group' aria-label='Button group with nested dropdown')
-        button.btn.btn-primary(type='button') Ajustes
+        button.btn.btn-primary(type='button') Acciones
         .btn-group.show(role='group')
             button#btnGroupDrop1.btn.btn-primary.dropdown-toggle(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true')
             .dropdown-menu(aria-labelledby='btnGroupDrop1' x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 48px, 0px);')
-                a.dropdown-item(href=`/proyecto/editar/${proyecto.id}`) Editar
-                a.dropdown-item(href='#') Eliminar
+                a.dropdown-item(href=`/proyecto/editar/${proyecto.id}`) Editar proyecto
+                a.dropdown-item(href='#' id="eliminar-proyecto" data-proyecto-url=proyecto.url) Eliminar proyecto

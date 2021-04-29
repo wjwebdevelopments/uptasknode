@@ -9,8 +9,11 @@ const {
     formularioEditar,
     nuevoProyecto,
     proyectoPorUrl,
-    actualizarProyecto 
-} = require('../controllers');
+    actualizarProyecto,
+    eliminarProyecto 
+} = require('../controllers/proyecto.controller');
+
+const { agregarTarea } = require("../controllers/tarea.controller");
 
 module.exports = () => {
 
@@ -31,6 +34,12 @@ module.exports = () => {
     // Listar proyectos
     router.get('/proyectos/:url', proyectoPorUrl);
     router.get('/proyecto/editar/:id', formularioEditar);
+
+    // Eliminar proyectp
+    router.delete('/proyectos/:url', eliminarProyecto);
+
+    // Tareas
+    router.post('/proyectos/:url', agregarTarea);
  
     return router;
 }

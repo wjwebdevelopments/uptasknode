@@ -10,10 +10,10 @@ const Proyecto = database.define('Proyecto', {
         autoIncrement: true
     },
     nombre: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING(100)
     },
     url: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING(100)
     }
 },
 { 

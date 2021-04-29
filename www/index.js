@@ -19,6 +19,7 @@ module.exports = (app) => {
 
     // Importar modelos
     require('../models/proyecto');
+    require('../models/tarea');
 
     db.sync()
         .then(() => console.log('Connection has been established successfully.'))
