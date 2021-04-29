@@ -9,9 +9,32 @@ input[type="text"] {
 
 button.btn-round {
     border-radius: 50px;
-    
+
 }
 
 .icofont-1x {
     font-size: 1.2rem;
+}
+
+.list-group-item + .list-group-item {
+    border-top-width: 1px;
+}
+
+.icofont-check-circled.completo {
+  color: var(--success);
+}
+
+/* sidebar */
+.list-group .list-group-item a {
+  color: var(--dark);
+}
+.list-group .list-group-item a:hover {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.list-group .list-group-item a.active {
+  font-weight: bold;
+  color: var(--primary);
 }

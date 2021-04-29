@@ -4,7 +4,7 @@ block contenido
     h1 #{proyecto.nombre}
 
 
-    // TODO: Formulario aqui
+    // REVIEW: Formulario Tarea 
     .jumbotron 
         form.agregar-tarea(action=`/proyectos/${proyecto.url}` method="POST")
             .form-group 
@@ -17,15 +17,28 @@ block contenido
             .form-group 
                 button.btn.btn-primary.btn-round(type="submit") 
                     |   Crear tarea
+        
+
+                    
+    // REVIEW: Listado de tareas pendientes
+    //- pre= vardump(tareas)
+    #listado-pendientes.mb-4
+      ul.list-group
+        if tareas.length > 0
+          each tarea in tareas
+            li.list-group-item.d-flex.justify-content-between.align-items-center.mb-2(data-tarea= tarea.id) 
+              | #{tarea.tarea}
+              .icons
+                i.icofont.icofont-check-circled.icofont-2x( class=`${  tarea.estado > 0 ? 'completo' : '' }` )
+                i.icofont.icofont-ui-delete.icofont-2x.ml-2
+        else
+          li.list-group-item.d-flex.justify-content-between.align-items-center.mb-2 
+            | No hay tareas en este proyecto
+            i.icofont.icofont-expressionless.icofont-2x
 
 
 
-    // TODO: Listado de pendientes
-
-
-
-
-    //Acciones que se pueden realizar
+    // REVIEW: BTN Acciones para editar o eliminar proyecto
     .btn-group(role='group' aria-label='Button group with nested dropdown')
         button.btn.btn-primary(type='button') Acciones
         .btn-group.show(role='group')

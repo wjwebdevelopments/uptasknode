@@ -1,4 +1,5 @@
 const Proyecto = require('../models/proyecto');
+const Tarea = require('../models/tarea');
 const { response, request } = require('express');
 
 exports.proyectosHome = async (req, res) => {
@@ -45,7 +46,7 @@ exports.nuevoProyecto = async (req, res) => {
 
     if ( !nombre ) {
         errores = [
-            ...errores, 
+            ...errores,
             {texto: 'es requerido un nombre para el proyecto', tipo: 'campo vacio'}
         ];
     }
@@ -63,19 +64,35 @@ exports.nuevoProyecto = async (req, res) => {
         res.redirect('/');
 
     }
-    
+
 }
 
+/**
+ * @path: /proyectos/:url
+ * @method: GET
+ * @params: { url }
+ */
 exports.proyectoPorUrl = async (req, res, next) => {
-    const proyectos = await Proyecto.findAll();   
-    const proyecto = await Proyecto.findOne({ where: { url: req.params.url } });
 
-    if ( !proyecto ) return next();  
+    const proyectosDB = Proyecto.findAll(); // Mostrar proyectos en el sidebar
+    const proyectoDB = Proyecto.findOne({ where: { url: req.params.url } }); // Mostrar proyecto en la vista
+
+    const [ proyectos, proyecto ] = await Promise.all([ proyectosDB, proyectoDB ]);
+
+    if ( !proyecto ) return next(); // Error handler si no hay proyecto
+
+    // consultar tareas del proyecto actual en la vista
+    const tareas = await Tarea.findAll({
+      where: {
+        ProyectoId: proyecto.id
+      }
+    });
 
     res.render('tareas', {
         nombrePagina: 'tareas del proyecto',
         proyecto,
-        proyectos
+        proyectos,
+        tareas
     })
 }
 
@@ -88,7 +105,7 @@ exports.actualizarProyecto = async (req, res) => {
 
     if ( !nombre ) {
         errores = [
-            ...errores, 
+            ...errores,
             {texto: 'es requerido un nombre para el proyecto', tipo: 'campo vacio'}
         ];
     }
@@ -106,7 +123,7 @@ exports.actualizarProyecto = async (req, res) => {
         res.redirect('/');
 
     }
-    
+
 }
 
 exports.eliminarProyecto = async (req = request, res = response, next) => {

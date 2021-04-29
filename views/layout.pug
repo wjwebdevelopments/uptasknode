@@ -25,16 +25,22 @@ html(lang="en")
                     .col-4 
                         .panel.panel--crear-proyecto 
                             a.btn.btn-primary.btn-block.btn-lg(href="/nuevo-proyecto") 
-                                i.icofont.icofont-plus
+                                i.icofont.icofont-plus.icofont-2x 
                                 |   Nuevo Proyecto
                         .panel.panel--lista-proyectos.mt-5
                             h3 Proyectos
                             .list-group
                                 if proyectos.length > 0
                                     each proyecto in proyectos
-                                        a.list-group-item.list-group-item-action(href=`/proyectos/${proyecto.url}`)
-                                            i.icofont.icofont-folder.icofont-1x  
-                                            |   #{proyecto.nombre}
+                                        li.list-group-item
+                                          a.d-flex.justify-content-between.align-items-center(href=`/proyectos/${proyecto.url}`)
+                                            | #{proyecto.nombre}
+                                            span.badge.badge-primary.badge-pill 0
+                                        //- a.list-group-item.list-group-item-action(href=`/proyectos/${proyecto.url}`)
+                                        //-     span
+                                        //-       i.icofont.icofont-folder.icofont-2x  
+                                        //-       |   #{proyecto.nombre}
+                                        //-     span.badge.badge-primary.badge-pill 19
                                 else 
                                     .no-proyectos.d-flex.flex-column.mt-3 
                                         i.icofont.icofont-bullseye.icofont-2x 
